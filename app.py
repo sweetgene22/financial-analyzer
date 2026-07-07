@@ -38,7 +38,7 @@ if ticker_input:
       df["Health Rating"] = df.apply(rate_financial_health, axis=1)
 
       st.subheader(f"{ticker} Financial Analysis")
-      st.dataframe(df[["Total", "Net", "Gross Margin %", "Operating Margin %", "Net Margin %", "Health Rating"]])
+      st.dataframe(df[["Total Revenue", "Net Income", "Gross Margin %", "Operating Margin %", "Net Margin %", "Health Rating"]])
 
       st.subheader("Margin Trends")
       st.line_chart(df[["Gross Margin %", "Operating Margin %", "Net Margin %"]])
