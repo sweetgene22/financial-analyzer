@@ -10,12 +10,12 @@ ticker_input = st.text_input("Enter a stock ticker (e.g. AAPL, MSFT, GOOGL)")
 
 def rate_financial_health(gross, operating, net):
   score = 0
-  if row["Gross Margin %"] > 40: score += 3
-  elif row["Gross Margin %"] > 20: score += 1
-  if row["Operating Margin %"] > 20: score +=3
-  elif row["Operating Margin %"] > 10: score +=1
-  if row["Net Margin %"] > 15: score += 3
-  elif row["Net Margin %"] > 5: score += 1
+  if gross > 40: score += 3
+  elif gross > 20: score += 1
+  if operating > 20: score +=3
+  elif operating > 10: score +=1
+  if net > 15: score += 3
+  elif net > 5: score += 1
   if score >= 7: return "Excellent"
   elif score >= 4: return "Good"
   else: return "Poor"
