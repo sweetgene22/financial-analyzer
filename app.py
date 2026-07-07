@@ -46,5 +46,5 @@ if ticker_input:
       for idx, row in df.iterrows():
           st.write(f"{idx}: {row['Health Rating']}")
   except Exception as e:
-      st.error("Could not fetch data. Please check the ticker and try again.")
+      st.error(f"Error: {e}")
   
