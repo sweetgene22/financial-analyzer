@@ -25,6 +25,7 @@ if ticker_input:
       ticker = ticker_input.strip().upper()
       stock = yf.Ticker(ticker)
       stmt = stock.income_stmt.T
+      st.write(stmt.columns.tolist())
       stmt.columns = [str(col).split(" ")[0] for col in stmt.columns]
 
       df = stmt[["Total", "Gross", "Operating", "Net"]].dropna()
