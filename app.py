@@ -24,27 +24,24 @@ if ticker_input:
   try:
       ticker = ticker_input.strip().upper()
       stock = yf.Ticker(ticker)
-      stmt = stock.income_stmt.T
-      stmt.columns = [str(col).split(" ")[0] for col in stmt.columns]
+      stmt = stock.income_stmt
+      
+      revenue = stmt.loc["Total Revenue"].iloc[0]
+      gross_profit = stmt.loc["Gross Profit"].iloc[0]
+      operating_income = stmt.loc["Operating Income"].iloc[0]
+      net_income = stmt.loc["Net Income"].iloc[0]
 
-      df = stmt[["Total Revenue", "Gross Profit", "Operating Income", "Net Income"]].dropna()
-      df = df / 1e9
-      df = df.round(2)
-
-      df["Gross Margin %"] = (df["Gross Profit"] / df["Total"] * 100).round(2)
-      df["Operating Margin %"] = (df["Operating Income"] / df["Total"] * 100).round(2)
-      df["Net Margin %"] = (df["Net Income"] / df["Total"] * 100).round(2)
-      df["Health Rating"] = df.apply(rate_financial_health, axis=1)
+      gross_margin = round(gross_profit / revenue * 100, 2)
+      operating_margin = round(operating_income / revenue * 100, 2)
+      net_margin = round(net_income / revenue * 100, 2)
+      rating = rate_financial_health(gross_margin, operating_margin, net_margin)
 
       st.subheader(f"{ticker} Financial Analysis")
-      st.dataframe(df[["Total Revenue", "Net Income", "Gross Margin %", "Operating Margin %", "Net Margin %", "Health Rating"]])
-
-      st.subheader("Margin Trends")
-      st.line_chart(df[["Gross Margin %", "Operating Margin %", "Net Margin %"]])
-
-      st.subheader("Health Rating")
-      for idx, row in df.iterrows():
-          st.write(f"{idx}: {row['Health Rating']}")
+      st.write(f"Total Revenue: ${round(revenue/1e9, 2)}B")
+      st.write(f"Gross Margin: {gross_margin}%")
+      st.write(f"Operating Margin: {operating_margin}%")
+      st.write(f"Net Margin: {net_margin}%")
+      st.write(f"Health Rating: {rating}
   except Exception as e:
       st.error(f"Error: {e}")
   
