@@ -34,7 +34,7 @@ if ticker_input:
       df["Gross Margin %"] = (df["Gross"] / df["Total"] * 100).round(2)
       df["Operating Margin %"] = (df["Operating"] / df["Total"] * 100).round(2)
       df["Net Margin %"] = (df["Net"] / df["Total"] * 100).round(2)
-      df{"Health Rating"] = df.apply(rate_financial_health, axis=1)
+      df["Health Rating"] = df.apply(rate_financial_health, axis=1)
 
       st.subheader(f"{ticker} Financial Analysis")
       st.dataframe(df[["Total", "Net", "Gross Margin %", "Operating Margin %", "Net Margin %", "Health Rating"]])
