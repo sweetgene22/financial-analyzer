@@ -8,7 +8,7 @@ st.write("Analyze any public company's financial health instantly")
 
 ticker_input = st.text_input("Enter a stock ticker (e.g. AAPL, MSFT, GOOGL)")
 
-def rate_financial_health(row):
+def rate_financial_health(gross, operating, net):
   score = 0
   if row["Gross Margin %"] > 40: score += 3
   elif row["Gross Margin %"] > 20: score += 1
