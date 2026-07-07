@@ -41,7 +41,7 @@ if ticker_input:
       st.write(f"Gross Margin: {gross_margin}%")
       st.write(f"Operating Margin: {operating_margin}%")
       st.write(f"Net Margin: {net_margin}%")
-      st.write(f"Health Rating: {rating}
+      st.write(f"Health Rating: {rating}")
   except Exception as e:
       st.error(f"Error: {e}")
   
