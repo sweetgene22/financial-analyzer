@@ -28,7 +28,7 @@ if ticker_input:
       st.write(stmt.columns.tolist())
       stmt.columns = [str(col).split(" ")[0] for col in stmt.columns]
 
-      df = stmt[["Total", "Gross", "Operating", "Net"]].dropna()
+      df = stmt[["Total Revenue", "Gross Profit", "Operating Income", "Net Income"]].dropna()
       df = df / 1e9
       df = df.round(2)
 
