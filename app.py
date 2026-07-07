@@ -42,6 +42,13 @@ if ticker_input:
       st.write(f"Operating Margin: {operating_margin}%")
       st.write(f"Net Margin: {net_margin}%")
       st.write(f"Health Rating: {rating}")
+      st.subheader("Margin Breakdown")
+      margins = {
+        "Gross Margin": gross_margin,
+        "Operating Margin": operating_margin,
+        "Net Margin": net_margin
+      }
+      st.bar_chart(margins)
   except Exception as e:
       st.error(f"Error: {e}")
   
